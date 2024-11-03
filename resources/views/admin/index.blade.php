@@ -1,5 +1,6 @@
 @extends('admin.master')
 
+@vite(['resources/css/app.css', 'resources/js/app.js'])
 @section('title', 'Index')
 
 @section('content')
