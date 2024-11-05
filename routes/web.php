@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
 Route::name('front.')->group(function () {
     Route::view('/', 'front.index')->name('index');
@@ -10,14 +11,16 @@ Route::name('front.')->group(function () {
     Route::view('/contact', 'front.contact')->name('contact');
 })->middleware('auth');
 
-Route::name('admin.')->prefix('/admin')->group(callback: function () {
+Route::name('admin.')->prefix(LaravelLocalization::setlocale() . '/admin')
+    ->middleware([ 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath' ])
+    ->group(callback: function () {
     Route::middleware('auth')->group(function () {
         Route::view('/', 'admin.index')->name('index');
     });
 
 });
-  require __DIR__.'/auth.php';
 
+require __DIR__.'/auth.php';
 //Route::get('/dashboard', function () {
 //    return view('dashboard');
 //})->middleware(['auth', 'verified'])->name('dashboard');

@@ -3,7 +3,7 @@
 <head>
     @include('admin.partials.head')
 </head>
-<body class="vertical  dark  ">
+<body class="vertical  dark @if(\Mcamara\LaravelLocalization\Facades\LaravelLocalization::getCurrentLocale() === 'ar') rtl @endif ">
 <div class="wrapper">
     @include('admin.partials.navbar')
     @include('admin.partials.sidebar')
