@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ServiceController;
 use Illuminate\Support\Facades\Route;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
@@ -15,7 +16,12 @@ Route::name('admin.')->prefix(LaravelLocalization::setlocale() . '/admin')
     ->middleware([ 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath' ])
     ->group(callback: function () {
     Route::middleware('auth')->group(function () {
+        // ================================== Admin Home
         Route::view('/', 'admin.index')->name('index');
+        // ================================== Services
+        Route::controller(ServiceController::class)->group(function () {
+           Route::resource('services', ServiceController::class);
+        });
     });
 
 });
