@@ -11,6 +11,11 @@
             </div>
             <div class="card shadow">
                 <div class="card-body">
+                    @if(session('success'))
+                        <div class="alert alert-success">
+                            {{ session('success') }}
+                        </div>
+                    @endif
                     <table class="table table-hover">
                         <thead>
                         <tr>
@@ -30,13 +35,13 @@
                                         <i class=" {{ $service->icon }} fa-2x"></i>
                                     </td>
                                     <td>
-                                        <a href="#" class="btn btn-warning">
+                                        <a href="{{ route('admin.services.edit', [ 'service' => $service]) }}" class="btn btn-warning">
                                             <i class="fe fe-edit fe-2x"></i>
                                         </a>
                                         <a href="#" class="btn btn-danger">
                                             <i class="fe fe-trash-2 fe-2x"></i>
                                         </a>
-                                        <a href="#" class="btn btn-primary">
+                                        <a href="{{ route('admin.services.show', [ 'service' => $service]) }}" class="btn btn-primary">
                                             <i class="fe fe-eye fe-2x"></i>
                                         </a>
                                     </td>
