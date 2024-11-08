@@ -35,4 +35,5 @@ return [
     'submit' => 'Submit',
     'update' => 'Update',
     'updated_successfully' => 'Your Record Has Been Updated Successfully',
+    'deleted_successfully' => 'Your Record Has Been Deleted Successfully',
 ];

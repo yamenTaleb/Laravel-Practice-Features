@@ -13,6 +13,7 @@
 <script src="{{ asset('assets-admin') }}/js/datamaps-zoomto.js"></script>
 <script src="{{ asset('assets-admin') }}/js/datamaps.custom.js"></script>
 <script src="{{ asset('assets-admin') }}/js/Chart.min.js"></script>
+@yield('scripts')
 <script>
     /* defind global options */
     Chart.defaults.global.defaultFontFamily = base.defaultFontFamily;
