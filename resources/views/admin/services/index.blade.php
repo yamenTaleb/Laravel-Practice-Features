@@ -7,15 +7,11 @@
         <div class="my-4">
             <div class="flex items-center justify-between mb-2">
                 <h2 class="white h5 page-title">{{ __('keywords.services') }}</h2>
-                <a href="{{ route('admin.services.create') }}" class="p-1.5 mb no-underline rounded text-white bg-blue-500 hover:bg-blue-600 ">{{ __('keywords.add_new') }}</a>
+                <x-action-button href="{{ route('admin.services.create') }}" type="create"></x-action-button>
             </div>
             <div class="card shadow">
                 <div class="card-body">
-                    @if(session('success'))
-                        <div class="alert alert-success">
-                            {{ session('success') }}
-                        </div>
-                    @endif
+                    <x-success-alert></x-success-alert>
                     <table class="table table-hover">
                         <thead>
                         <tr>
@@ -33,9 +29,7 @@
                                     <td>{{ $service->title }}</td>
                                     <td><i class="{{ $service->icon }} fa-2x"></i></td>
                                     <td>
-                                        <a href="{{ route('admin.services.edit', ['service' => $service]) }}" class="btn btn-warning">
-                                            <i class="fe fe-edit fe-2x"></i>
-                                        </a>
+                                        <x-action-button href="{{ route('admin.services.edit', ['service' => $service]) }}" type="edit"></x-action-button>
                                         <form action="{{ route('admin.services.destroy', ['service' => $service]) }}" method="post" id="deleteService-{{ $service->id }}" class="d-inline">
                                             @csrf
                                             @method('DELETE')
@@ -43,18 +37,12 @@
                                                 <i class="fe fe-trash-2 fe-2x"></i>
                                             </button>
                                         </form>
-                                        <a href="{{ route('admin.services.show', ['service' => $service]) }}" class="btn btn-primary">
-                                            <i class="fe fe-eye fe-2x"></i>
-                                        </a>
+                                        <x-action-button href="{{ route('admin.services.show', ['service' => $service]) }}" type="show"></x-action-button>
                                     </td>
                                 </tr>
                             @endforeach
                         @else
-                            <tr>
-                                <td class="alert alert-danger" colspan="4">
-                                    {{ __('keywords.no_records_found') }}
-                                </td>
-                            </tr>
+                            <x-empty-alert></x-empty-alert>
                         @endif
                         </tbody>
                     </table>
