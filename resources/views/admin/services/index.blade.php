@@ -30,13 +30,7 @@
                                     <td><i class="{{ $service->icon }} fa-2x"></i></td>
                                     <td>
                                         <x-action-button href="{{ route('admin.services.edit', ['service' => $service]) }}" type="edit"></x-action-button>
-                                        <form action="{{ route('admin.services.destroy', ['service' => $service]) }}" method="post" id="deleteService-{{ $service->id }}" class="d-inline">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button type="button" onclick="deleteService({{ $service->id }})" class="btn btn-danger">
-                                                <i class="fe fe-trash-2 fe-2x"></i>
-                                            </button>
-                                        </form>
+                                        <x-delete-button href="{{ route('admin.services.destroy', ['service' => $service]) }}" id="{{ $service->id }}"></x-delete-button>
                                         <x-action-button href="{{ route('admin.services.show', ['service' => $service]) }}" type="show"></x-action-button>
                                     </td>
                                 </tr>
@@ -55,22 +49,3 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 @endsection
 
-@section('scripts')
-    <script>
-        function deleteService(serviceId) {
-            Swal.fire({
-                title: 'Delete Service',
-                text: 'Are you sure you want to delete this service?',
-                icon: 'warning',
-                showCancelButton: true,
-                confirmButtonText: 'Yes, delete it!',
-                cancelButtonText: 'No, keep it'
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    document.getElementById('deleteService-' + serviceId).submit();
-                    Swal.fire('', "Poof! Your service has been deleted!", "success");
-                }
-            });
-        }
-    </script>
-@endsection

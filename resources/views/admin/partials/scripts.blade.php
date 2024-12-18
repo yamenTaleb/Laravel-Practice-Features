@@ -247,3 +247,20 @@
     gtag('js', new Date());
     gtag('config', 'UA-56159088-1');
 </script>
+<script>
+    function deleteService(serviceId) {
+        Swal.fire({
+            title: 'Delete Service',
+            text: 'Are you sure you want to delete this service?',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Yes, delete it!',
+            cancelButtonText: 'No, keep it'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                document.getElementById('deleteService-' + serviceId).submit();
+                Swal.fire('', "Poof! Your service has been deleted!", "success");
+            }
+        });
+    }
+</script>

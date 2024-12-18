@@ -16,28 +16,22 @@
                         @csrf
                         <div class="form-row">
                             <div class="form-group col-md-6">
-                                <label for="title">{{ __('keywords.title') }}</label>
+                                <x-form-label label="title"/>
                                 <input type="text" class="form-control p-3 rounded text-white bg-transparent" name="title" id="title" placeholder="{{ __('keywords.title') }}" required value="{{ $service->title }}">
-                                @error('title')
-                                <div class="text-sm mt-1 text-red-600">{{ $message }}</div>
-                                @enderror
+                                <x-validation-error field="title"/>
                             </div>
                             <div class="form-group col-md-6">
-                                <label for="icon">{{ __('keywords.icon') }}</label>
+                                <x-form-label label="icon"/>
                                 <input type="text" class="form-control p-3 rounded text-white bg-transparent" name="icon" id="icon" placeholder="{{ __('keywords.icon') }}" required value="{{ $service->icon }}">
-                                @error('icon')
-                                <div class="text-sm mt-1 text-red-600">{{ $message }}</div>
-                                @enderror
+                                <x-validation-error field="icon"/>
                             </div>
                         </div>
                         <div class="form-group form-row">
-                            <label for="description">{{ __('keywords.description') }}</label>
+                            <x-form-label label="description"/>
                             <textarea class="form-control" name="description" id="description" placeholder="{{ __('keywords.description') }}" required>{{ $service->description }}</textarea>
-                            @error('description')
-                            <div class="text-sm mt-1 text-red-600">{{ $message }}</div>
-                            @enderror
+                            <x-validation-error field="description"/>
                         </div>
-                        <button type="submit" class="mt-2 btn btn-primary">{{ __('keywords.update') }}</button>
+                        <x-submit-button/>
                     </form>
                 </div>
             </div>
