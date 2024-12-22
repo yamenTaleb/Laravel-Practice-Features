@@ -8,14 +8,12 @@ use App\Http\Requests\UpdateServiceRequest;
 
 class ServiceController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+    private const DIR = "admin.service.";
     public function index()
     {
-        $services = Service::paginate(4);
+        $services = Service::paginate(config('pagination.limit'));
 
-        return view('admin.services.index', get_defined_vars());
+        return view(self::DIR . 'index', get_defined_vars());
     }
 
     /**
@@ -23,7 +21,7 @@ class ServiceController extends Controller
      */
     public function create()
     {
-        return view('admin.services.create');
+        return view(self::DIR . 'create');
     }
 
     /**
@@ -35,7 +33,7 @@ class ServiceController extends Controller
 
         Service::create($data);
 
-        return to_route('admin.services.index')->with('success', __('keywords.created_successfully'));
+        return to_route(self::DIR . 'index')->with('success', __('keywords.created_successfully'));
     }
 
     /**
@@ -43,7 +41,7 @@ class ServiceController extends Controller
      */
     public function show(Service $service)
     {
-        return view('admin.services.show', get_defined_vars());
+        return view(self::DIR . 'show', get_defined_vars());
     }
 
     /**
@@ -51,7 +49,7 @@ class ServiceController extends Controller
      */
     public function edit(Service $service)
     {
-        return view('admin.services.edit', get_defined_vars());
+        return view(self::DIR . 'edit', get_defined_vars());
     }
 
     /**
@@ -63,7 +61,7 @@ class ServiceController extends Controller
 
         $service->update($data);
 
-        return to_route('admin.services.index')->with('success', __('keywords.updated_successfully'));
+        return to_route(self::DIR . 'index')->with('success', __('keywords.updated_successfully'));
     }
 
     /**
@@ -73,6 +71,6 @@ class ServiceController extends Controller
     {
         $service->delete();
 
-        return to_route('admin.services.index');
+        return to_route(self::DIR . 'index');
     }
 }
