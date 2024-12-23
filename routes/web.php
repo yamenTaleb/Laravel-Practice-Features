@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\FeatureController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ServiceController;
 use Illuminate\Support\Facades\Route;
@@ -14,13 +15,17 @@ Route::name('front.')->group(function () {
 
 Route::name('admin.')->prefix(LaravelLocalization::setlocale() . '/admin')
     ->middleware([ 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath' ])
-    ->group(callback: function () {
-    Route::middleware('auth')->group(function () {
+    ->group( function () {
+    Route::middleware('auth')->group( function () {
         // ================================== Admin Home
         Route::view('/', 'admin.index')->name('index');
         // ================================== Services
         Route::controller(ServiceController::class)->group(function () {
            Route::resource('services', ServiceController::class);
+        });
+        // ================================== Features
+        Route::controller(FeatureController::class)->group(function () {
+            Route::resource('features', FeatureController::class);
         });
     });
 

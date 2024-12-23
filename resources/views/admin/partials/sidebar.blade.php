@@ -29,6 +29,8 @@
         <ul class="navbar-nav flex-fill w-100 mb-2">
             {{-- Services --}}
             <x-sidebar-tab-component href="{{ route('admin.services.index') }}" icon="fe-codesandbox" tabName="{{ __('keywords.services') }}"></x-sidebar-tab-component>
+            {{-- Features --}}
+            <x-sidebar-tab-component href="{{ route('admin.features.index') }}" icon="fe-bookmark" tabName="{{ __('keywords.features') }}"></x-sidebar-tab-component>
         </ul>
     </nav>
 </aside>

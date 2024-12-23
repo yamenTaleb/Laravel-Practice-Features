@@ -8,7 +8,7 @@ use App\Http\Requests\UpdateServiceRequest;
 
 class ServiceController extends Controller
 {
-    private const DIR = "admin.service.";
+    private const DIR = "admin.services.";
     public function index()
     {
         $services = Service::paginate(config('pagination.limit'));
